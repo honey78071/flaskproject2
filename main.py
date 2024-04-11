@@ -1,6 +1,6 @@
 from flask import  Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_mail import Mail, Message
 
 
 app = Flask(__name__)
@@ -8,6 +8,16 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///myfirstdb.db"
 
 db = SQLAlchemy(app)
+
+mail= Mail(app)
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'nitesh26028@gmail.com'
+app.config['MAIL_PASSWORD'] = 'etzm cfxs yeex lawp'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
 
 
 class ContactUs(db.Model):
@@ -50,6 +60,12 @@ def savethisdata():
         db.session.add(data)
         db.session.commit()
 
+
+
+        msg = Message('Hello', sender = 'nitesh26028@gmail.com', recipients = ['nitesh26028@gmail.com'])
+        msg.body = "Hello Flask message sent from Flask-Mail"
+        mail.send(msg)
+        # return "Setnt"
         return redirect("/contact")
 
     return "your data saved sucessfulyyy......!"
