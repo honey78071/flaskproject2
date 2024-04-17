@@ -14,7 +14,15 @@
         <a href="/contact">Contact Us</a>
         <a href="/services">Our Services</a>
     </div>
-
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
 
     {% block xyz %}{% endblock xyz %}
 

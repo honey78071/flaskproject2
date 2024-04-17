@@ -1,7 +1,8 @@
 {% extends "basefile.html" %}
 
 {% block xyz %}
-<form style="padding: 32px; padding-left: 15%; padding-right: 20%;" action="/savethisdata" method="post">
+<form style="padding: 32px; padding-left: 15%; padding-right: 20%;" action="/savethisdata" method="POST" 
+enctype="multipart/form-data">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Todo Title</label>
       <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Title" name="title">
@@ -10,7 +11,10 @@
       <label for="exampleInputPassword1" class="form-label">Message</label>
       <textarea type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Your Message here" rows="5" name="msg"></textarea>
     </div>
-    
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Upload Image</label>
+      <input type="file" name ="img" class="form-control" id="exampleInputEmail1" placeholder="Upload Your Image" >
+    </div>
     <div style="text-align: center;">
         <button type="submit" class="btn btn-primary">Add Todo</button>
     </div>
